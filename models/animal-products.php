@@ -1,15 +1,20 @@
 <?php
 
+  require_once __DIR__ . '/../traits/property-restriction.php';
+
   class AnimalProduct {
+
+    use PropertyRestriction;
 
     const PASSWORD = 'myPassword';
 
     // Properties
     protected string $name;
+    protected string $brand;
     private float $price = 100;
     protected float $discount = 0;
     protected bool $inStock = true;
-    
+    protected array $tags = [];
     
     
 
@@ -26,6 +31,21 @@
 
     public function getName() : string {
       return $this->name;
+    }
+
+
+    public function setBrand(string $_brand) {
+      $_brand = trim($_brand);
+      if (strlen($_brand) < 80) {
+        $this->brand = $_brand;
+      } 
+      else {
+        throw new Exception ("The brand is too long (max 80 characters)");
+      }
+    }
+
+    public function getBrand() : string {
+      return $this->brand;
     }
 
 
@@ -57,8 +77,39 @@
       }
     }
 
+    public function addTag (string $tag) {
+      $tag = trim($tag);
+
+      // If tag is already present, we don't need to add it. 
+      if ($this->isTagPresent($tag) != false) return null;
+      // If tag is too long, we don't add it 
+      if (strlen($tag) > 100) {
+        throw new Exception("Tag name is too long (max 100 characters)");
+        return null;
+      }
+
+      $this->tags[] = $tag;
+    }
+
+    public function removeTag (string $tag) {
+      $tag = trim($tag);
+      $key = $this->isTagPresent($tag);
+
+      if($key != false) {
+        unset($this->tags[$key]);
+        array_values($this->tags);
+      }
+    }
+
+    public function getProductTags () : array {
+      return $this->tags;
+    }
 
 
+    // Static Methods
+    private static function isTagPresent ($tag) {
+      return array_search($tag, AnimalProduct::$tags, true);
+    }
 
   }
 

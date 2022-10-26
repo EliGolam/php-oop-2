@@ -3,7 +3,7 @@
 <!-- METADATA -->
 <head>
     <title>API Practice</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,26 +52,8 @@
         <p class="subtitle">Playground</p>
     </header>
 
-    <div id="app" class="container exercises">
-        <div class="results-container row">
-            <p
-                v-show="loading"
-                class="text-center"
-            >Loading...</p>
-            
-            <p 
-                v-show="!loading"
-                v-for="email in emails"
-                class="result col-12"
-            >
-                {{ email }}
-            </p>
-        </div>
-        
-    </div>
-    
-    <div id="live-coding" class="container exercises">
-        <p class="result"></p>
-    </div>
+    <main>
+
+    </main>
 </body>
 </html>

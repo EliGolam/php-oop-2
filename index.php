@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+<?php
+
+  // Import models
+  require_once __DIR__ . '/models/animal-products.php';
+
+  $testProduct = new AnimalProduct();
+  echo $testProduct->getPrice();
+
+  $testProduct->setName("New Item");
+  $testProduct->setDiscount(0.3, "myPassword");
+
+  var_dump($testProduct);
+  echo $testProduct->getPrice();
+  echo $testProduct->getOriginalPrice();
+
+?><!DOCTYPE html>
 <html lang="en">
 <!-- METADATA -->
 <head>

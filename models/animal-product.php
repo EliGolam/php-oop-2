@@ -85,7 +85,7 @@
       echo "DEBUG - isTagPresent" . array_search($tag, $this->tags, true) . "<br>";
 
       // If tag is already present, we don't need to add it. 
-      if ($this->isTagPresent($tag) != false) {
+      if ($this->isTagPresent($tag) == false) {
         // If tag is too long, we don't add it 
         if (strlen($tag) > 100) {
           throw new Exception("Tag name is too long (max 100 characters)");

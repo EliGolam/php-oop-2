@@ -1,7 +1,9 @@
 <?php
 
   // Import models
-  require_once __DIR__ . '/models/animal-products.php';
+  require_once __DIR__ . '/models/animal-product.php';
+  require_once __DIR__ . '/models/animal-product-types.php';
+  require_once __DIR__ . '/models/user.php';
 
   $testProduct = new AnimalProduct();
   echo $testProduct->getPrice();
@@ -22,7 +24,26 @@
   $testProduct->removeTag("Litter");
   var_dump($testProduct);
 
-  
+  $testFood = new FoodProduct();
+  var_dump($testFood);
+
+  $testFood->setExpiryDate("2028-06-12");
+  var_dump($testFood);
+
+  $testFood->setExpiryDate("2027/05/21");
+  var_dump($testFood);
+
+  echo $testFood->getExpiryDate() . "<br>";
+  echo $testFood->getExpiryDate("year") . "<br>";
+  echo $testFood->getExpiryDate("m") . "<br>";
+  echo $testFood->getExpiryDate("D") . "<br>";
+  echo $testFood->getExpiryDate("random") . "<br>";
+
+  $user1 = new User(); 
+  var_dump($user1);
+
+  $user1->register("Miranda Lawson", "m.lawson@cerberus.com", "massEffect3doesntExist!");
+  var_dump($user1);
 
 ?><!DOCTYPE html>
 <html lang="en">

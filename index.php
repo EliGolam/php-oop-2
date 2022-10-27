@@ -13,6 +13,17 @@
   echo $testProduct->getPrice();
   echo $testProduct->getOriginalPrice();
 
+  $testProduct->setBrand("New Test Brand");
+  $testProduct->addTag("Cat Food");
+  $testProduct->addTag("Litter");
+  $testProduct->addTag("Cat Food");
+  
+  var_dump($testProduct);
+  $testProduct->removeTag("Litter");
+  var_dump($testProduct);
+
+  
+
 ?><!DOCTYPE html>
 <html lang="en">
 <!-- METADATA -->

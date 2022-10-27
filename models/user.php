@@ -1,6 +1,14 @@
 <?php
 
+  require_once __DIR__ . '/../traits/EmailTrait.php';
+  require_once __DIR__ . '/../traits/PasswordTrait.php';
+  require_once __DIR__ . '/../traits/propertyRestriction.php';
+
   class User {
+
+    use EmailTrait;
+    use Password;
+    use PropertyRestriction;
 
     private int $id; // Temporary value for testing. Not intended for production
     private static int $totalIDs = 0;
@@ -10,10 +18,12 @@
     private string $lastName;
     private bool $isSubscribed;
 
-    private $password;
-    private string $email;
     private $phoneNumber;
     private $userName;
+
+    private array $paymentMethod = [];
+
+    // Add profile image, adress, separate in registered user
 
     function __construct() {
       User::$totalIDs += 1;
@@ -25,7 +35,7 @@
     public function register(string $_fullName, string $_email, string $_password, string $_userName = null) {
       $this->setName($_fullName);
       $this->setEmail($_email);
-      $this->setPassword($_password);
+      $this->createNewPassword($_password);
       $this->setUserName($_userName);
       $this->isSubscribed = true;
     }
@@ -41,10 +51,6 @@
     public function getRegStatus() {
       return $this->isSubscribed;
     }
-
-    public function verifyPassword ($_password) : bool {
-      return password_verify($_password, $this->password);
-    } 
     
 
     private function setName(&$name) {
@@ -58,13 +64,6 @@
       $this->middleName = implode(" ", $nameParts);
     }
 
-    private function setEmail(string &$email) {
-      $this->email = $email;
-    }
-
-    private function setPassword(&$newPassword) {
-      $this->password = password_hash($newPassword,  PASSWORD_DEFAULT);
-    }
 
     private function setUserName(&$userName) {
       $this->userName = $userName;

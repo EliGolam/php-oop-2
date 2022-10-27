@@ -1,6 +1,6 @@
 <?php
 
-  require_once __DIR__ . '/../traits/property-restriction.php';
+  require_once __DIR__ . '/../traits/propertyRestriction.php';
 
   class AnimalProduct {
 
@@ -14,10 +14,12 @@
 
     protected string $name;
     protected string $brand;
+    private int $VAT = 22;
     private float $price = 100;
     protected float $discount = 0;
     protected bool $inStock = true;
     protected array $tags = [];
+    protected string $description;
     
     function __construct() {
       AnimalProduct::$totalIDs += 1;

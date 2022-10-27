@@ -45,6 +45,13 @@
   $user1->register("Miranda Lawson", "m.lawson@cerberus.com", "massEffect3doesntExist!");
   var_dump($user1);
 
+  $user1->getRegStatus();
+  $user1->getName();
+  $user1->getId();
+
+  var_dump($user1->verifyPassword("wrongPassword"));
+  var_dump($user1->verifyPassword("massEffect3doesntExist!"));
+
 ?><!DOCTYPE html>
 <html lang="en">
 <!-- METADATA -->

@@ -8,7 +8,7 @@
     private string $lastName;
     private bool $isSubscribed;
 
-    private string $password;
+    private $password;
     private string $email;
     private $phoneNumber;
     private $userName;
@@ -30,6 +30,19 @@
     public function getId() {
       return $this->id;
     }
+
+    public function getName() {
+      return $this->firstName . " " . $this->middleName . " " . $this->lastName;
+    }
+
+    public function getRegStatus() {
+      return $this->isSubscribed;
+    }
+
+    public function verifyPassword ($_password) : bool {
+      return password_verify($_password, $this->password);
+    } 
+    
 
     private function setName(&$name) {
       $nameParts = explode(" ", $name);

@@ -2,7 +2,9 @@
 
   class User {
 
-    private int $id; // Temporary rand for testing. Not intended for production
+    private int $id; // Temporary value for testing. Not intended for production
+    private static int $totalIDs = 0;
+
     private string $firstName;
     private string $middleName;
     private string $lastName;
@@ -14,7 +16,8 @@
     private $userName;
 
     function __construct() {
-      $this->id = rand(1, 1000);
+      User::$totalIDs += 1;
+      $this->id = User::$totalIDs;
       $this->isSubscribed = false;
     }
 

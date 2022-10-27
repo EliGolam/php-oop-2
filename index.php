@@ -4,6 +4,7 @@
   require_once __DIR__ . '/models/animal-product.php';
   require_once __DIR__ . '/models/animal-product-types.php';
   require_once __DIR__ . '/models/user.php';
+  require_once __DIR__ . '/models/purchase.php';
 
   $testProduct = new AnimalProduct();
   echo $testProduct->getPrice();
@@ -51,6 +52,12 @@
 
   var_dump($user1->verifyPassword("wrongPassword"));
   var_dump($user1->verifyPassword("massEffect3doesntExist!"));
+
+  $testPurchase = new Purchase($testProduct, $user1);
+  var_dump($testPurchase);
+
+  $testPurchaseFood = new Purchase($testFood, $user1);
+  var_dump($testPurchaseFood);
 
 ?><!DOCTYPE html>
 <html lang="en">

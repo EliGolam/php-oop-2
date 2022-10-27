@@ -9,6 +9,9 @@
     const PASSWORD = 'myPassword';
 
     // Properties
+    private int $id; 
+    private static int $totalIDs = 0;
+
     protected string $name;
     protected string $brand;
     private float $price = 100;
@@ -16,9 +19,16 @@
     protected bool $inStock = true;
     protected array $tags = [];
     
-    
+    function __construct() {
+      AnimalProduct::$totalIDs += 1;
+      $this->id = AnimalProduct::$totalIDs;
+    }
 
     // Methods
+    public function getId () {
+      return $this->id;
+    }
+
     public function setName(string $_name) {
       $_name = trim($_name);
       if (strlen($_name) < 80) {
